@@ -1,8 +1,9 @@
-import { Bell, Search, Moon, Sun, Globe } from "lucide-react";
+import { Search, Moon, Sun, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import type { User } from "@/types";
 import { useApp } from "@/context/AppContext";
 import { useState } from "react";
+import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 
 interface NavbarProps {
   user: User;
@@ -46,13 +47,7 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
           {/* Right side - Icons & User */}
           <div className="flex items-center gap-4 ml-6">
             {/* Notifications */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="relative p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </motion.button>
+            <NotificationCenter userId={user.id} />
 
             {/* Theme Toggle */}
             <motion.button
@@ -80,11 +75,11 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute right-0 mt-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50"
+                  className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50"
                 >
                   {[
                     { code: 'en', label: 'English' },
-                    { code: 'km', label: 'ខmer' },
+                    { code: 'km', label: 'Khmer' },
                     { code: 'fr', label: 'Français' },
                   ].map((lang) => (
                     <button

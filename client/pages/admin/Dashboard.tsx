@@ -47,8 +47,8 @@ export default function AdminDashboard() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-4xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Welcome back, {currentUser.name}! Here's an overview of your school.
         </p>
       </motion.div>
@@ -107,8 +107,8 @@ export default function AdminDashboard() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Classes</h2>
-              <p className="text-gray-600 text-sm">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Classes</h2>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 {mockClasses.length} active classes
               </p>
             </div>
@@ -139,10 +139,10 @@ export default function AdminDashboard() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 h-fit"
+          className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 h-fit"
         >
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Announcements</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">Announcements</h2>
             <Bell size={20} className="text-blue-600" />
           </div>
 
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="pb-4 border-b border-gray-100 last:border-b-0 last:pb-0"
+                className="pb-4 border-b border-gray-100 dark:border-slate-700 last:border-b-0 last:pb-0"
               >
                 <div className="flex items-start gap-3">
                   <div
@@ -166,13 +166,13 @@ export default function AdminDashboard() {
                     }`}
                   ></div>
                   <div className="flex-1">
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">
                       {announcement.title}
                     </p>
-                    <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
                       {announcement.content}
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                       {announcement.createdDate.toLocaleDateString()}
                     </p>
                   </div>

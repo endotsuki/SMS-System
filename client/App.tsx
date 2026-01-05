@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "@/context/AppContext";
+import { NotificationProvider } from "@/context/NotificationContext";
 
 // Pages
 import Index from "./pages/Index";
@@ -41,12 +42,13 @@ const queryClient = new QueryClient();
 function AppContent() {
   return (
     <AppProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
+      <NotificationProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
@@ -82,6 +84,7 @@ function AppContent() {
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
+      </NotificationProvider>
     </AppProvider>
   );
 }
