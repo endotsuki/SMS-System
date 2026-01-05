@@ -23,7 +23,7 @@ export default function AdminReports() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const students = Object.values(mockUsers).filter(u => u.role === 'student');
   const teachers = Object.values(mockUsers).filter(u => u.role === 'teacher');
@@ -97,7 +97,7 @@ export default function AdminReports() {
         transition={{ delay: 0.15 }}
         className="flex items-center gap-2 mb-8"
       >
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{translations.download}:</span>
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Download:</span>
         <button
           onClick={() => handleExport('pdf')}
           className="flex items-center gap-1 px-3 py-1 text-sm rounded-lg border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"

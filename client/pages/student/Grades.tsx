@@ -22,7 +22,7 @@ export default function StudentGrades() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const studentGrades = mockGrades.filter((g) => g.studentId === currentUser.id);
   const averageGrade =

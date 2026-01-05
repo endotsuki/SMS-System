@@ -37,7 +37,7 @@ export default function ClassDetail() {
     }
   }, [navigate, classId]);
 
-  if (!currentUser || !classData) return <div>{translations.loading}</div>;
+  if (!currentUser || !classData) return null;
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");

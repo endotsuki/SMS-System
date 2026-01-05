@@ -24,7 +24,7 @@ export default function AdminClasses() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const filteredClasses = mockClasses.filter(
     (cls) =>

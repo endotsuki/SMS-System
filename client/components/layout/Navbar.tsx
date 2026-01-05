@@ -1,5 +1,5 @@
 import { Search, Moon, Sun, Globe } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { User } from "@/types";
 import { useApp } from "@/context/AppContext";
 import { useState } from "react";
@@ -14,20 +14,9 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
   const { theme, toggleTheme, language, setLanguage, translations } = useApp();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
 
-  const roleColors: Record<string, string> = {
-    admin: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-    teacher: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-    student: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  };
-
   return (
-    <motion.nav
-      className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 sticky top-0 z-30 transition-colors"
-      layout
-    >
-      <div
-        className={`transition-all duration-300 ${sidebarOpen ? "ml-[280px]" : "ml-20"}`}
-      >
+    <nav className="sticky top-0 z-30 backdrop-blur-sm bg-white/50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-700">
+      <div className={sidebarOpen ? "ml-[280px]" : "ml-20"}>
         <div className="flex items-center justify-between px-6 py-4">
           {/* Left side - Search */}
           <div className="flex-1 max-w-md">
@@ -39,7 +28,7 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
               <input
                 type="text"
                 placeholder={translations.search}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-colors"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-slate-600 text-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -50,55 +39,63 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
             <NotificationCenter userId={user.id} />
 
             {/* Theme Toggle */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
+            <button
               onClick={toggleTheme}
               className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
               title={theme === 'light' ? translations.darkMode : translations.lightMode}
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-            </motion.button>
+            </button>
 
             {/* Language Selector */}
             <div className="relative">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
+              <button
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
                 className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
               >
                 <Globe size={20} />
-              </motion.button>
+              </button>
 
               {/* Language Dropdown */}
-              {showLanguageMenu && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50"
-                >
-                  {[
-                    { code: 'en', label: 'English' },
-                    { code: 'km', label: 'Khmer' },
-                    { code: 'fr', label: 'Français' },
-                  ].map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code as any);
-                        setShowLanguageMenu(false);
-                      }}
-                      className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
-                        language === lang.code
-                          ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
-                      }`}
+              <AnimatePresence>
+                {showLanguageMenu && (
+                  <>
+                    <div
+                      onClick={() => setShowLanguageMenu(false)}
+                      className="fixed inset-0 z-40"
+                    />
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50"
                     >
-                      {lang.label}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
+                      {[
+                        { code: 'en', label: 'English' },
+                        { code: 'km', label: 'ខ្មែរ' },
+                        { code: 'fr', label: 'Français' },
+                      ].map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setLanguage(lang.code as any);
+                            setShowLanguageMenu(false);
+                          }}
+                          className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                            language === lang.code
+                              ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
+                          }`}
+                        >
+                          {lang.label}
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Divider */}
@@ -108,15 +105,7 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
             <div className="flex items-center gap-3">
               <div className="text-right">
                 <p className="text-sm font-medium text-gray-900 dark:text-white">{user.name}</p>
-                <div className="flex items-center gap-1 justify-end">
-                  <span
-                    className={`text-xs font-semibold px-2.5 py-0.5 rounded-full capitalize ${
-                      roleColors[user.role] || "bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200"
-                    }`}
-                  >
-                    {user.role}
-                  </span>
-                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{user.role}</span>
               </div>
               {user.avatar ? (
                 <img
@@ -125,7 +114,7 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
                   className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-slate-600"
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold">
+                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -133,6 +122,6 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

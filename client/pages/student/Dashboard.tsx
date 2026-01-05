@@ -24,7 +24,7 @@ export default function StudentDashboard() {
   }, [navigate]);
 
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const enrolledClasses = getStudentClasses(currentUser.id);

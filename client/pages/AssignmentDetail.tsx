@@ -33,7 +33,7 @@ export default function AssignmentDetail() {
     }
   }, [navigate, assignmentId]);
 
-  if (!currentUser || !assignment) return <div>{translations.loading}</div>;
+  if (!currentUser || !assignment) return null;
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");

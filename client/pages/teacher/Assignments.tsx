@@ -34,7 +34,7 @@ export default function TeacherAssignments() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const filteredAssignments = filter === 'all' 
     ? assignments 
@@ -74,7 +74,7 @@ export default function TeacherAssignments() {
           <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">{stats.total}</p>
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-6">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{translations.published}</p>
+          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Published</p>
           <p className="text-3xl font-bold text-green-600 dark:text-green-400 mt-2">{stats.published}</p>
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-6">

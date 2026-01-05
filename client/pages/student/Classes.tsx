@@ -22,7 +22,7 @@ export default function StudentClasses() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const enrolledClasses = getStudentClasses(currentUser.id);
 

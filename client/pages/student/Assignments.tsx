@@ -22,7 +22,7 @@ export default function StudentAssignments() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const assignments = getStudentAssignments(currentUser.id);
 

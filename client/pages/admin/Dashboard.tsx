@@ -22,7 +22,7 @@ export default function AdminDashboard() {
   }, [navigate]);
 
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   // Calculate stats

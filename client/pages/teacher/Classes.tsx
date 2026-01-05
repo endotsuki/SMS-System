@@ -23,7 +23,7 @@ export default function TeacherClasses() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const myClasses = getClassesByTeacher(currentUser.id);
 

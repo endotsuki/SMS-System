@@ -22,7 +22,7 @@ export default function StudentSettings() {
     }
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");

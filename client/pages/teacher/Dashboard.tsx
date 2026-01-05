@@ -22,7 +22,7 @@ export default function TeacherDashboard() {
   }, [navigate]);
 
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const myClasses = getClassesByTeacher(currentUser.id);

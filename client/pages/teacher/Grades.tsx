@@ -41,7 +41,7 @@ export default function TeacherGrades() {
     }
   };
 
-  if (!currentUser || !selectedClass) return <div>{translations.loading}</div>;
+  if (!currentUser || !selectedClass) return null;
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");

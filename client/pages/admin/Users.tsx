@@ -26,7 +26,7 @@ export default function AdminUsers() {
     setUsers(Object.values(mockUsers));
   }, [navigate]);
 
-  if (!currentUser) return <div>{translations.loading}</div>;
+  if (!currentUser) return null;
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
