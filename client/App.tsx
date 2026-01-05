@@ -47,43 +47,58 @@ function AppContent() {
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <BrowserRouter>
+            <BrowserRouter
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true,
+              }}
+            >
               <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
+                {/* Public Routes */}
+                <Route path="/" element={<Index />} />
+                <Route path="/login" element={<Login />} />
 
-              {/* Shared Routes */}
-              <Route path="/class/:classId" element={<ClassDetail />} />
-              <Route path="/assignment/:assignmentId" element={<AssignmentDetail />} />
+                {/* Shared Routes */}
+                <Route path="/class/:classId" element={<ClassDetail />} />
+                <Route
+                  path="/assignment/:assignmentId"
+                  element={<AssignmentDetail />}
+                />
 
-              {/* Admin Routes */}
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/classes" element={<AdminClasses />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/reports" element={<AdminReports />} />
-              <Route path="/admin/settings" element={<AdminSettings />} />
+                {/* Admin Routes */}
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/classes" element={<AdminClasses />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/reports" element={<AdminReports />} />
+                <Route path="/admin/settings" element={<AdminSettings />} />
 
-              {/* Teacher Routes */}
-              <Route path="/teacher" element={<TeacherDashboard />} />
-              <Route path="/teacher/assignments" element={<TeacherAssignments />} />
-              <Route path="/teacher/classes" element={<TeacherClasses />} />
-              <Route path="/teacher/grades" element={<TeacherGrades />} />
-              <Route path="/teacher/settings" element={<TeacherSettings />} />
+                {/* Teacher Routes */}
+                <Route path="/teacher" element={<TeacherDashboard />} />
+                <Route
+                  path="/teacher/assignments"
+                  element={<TeacherAssignments />}
+                />
+                <Route path="/teacher/classes" element={<TeacherClasses />} />
+                <Route path="/teacher/grades" element={<TeacherGrades />} />
+                <Route path="/teacher/settings" element={<TeacherSettings />} />
 
-              {/* Student Routes */}
-              <Route path="/student" element={<StudentDashboard />} />
-              <Route path="/student/assignments" element={<StudentAssignments />} />
-              <Route path="/student/classes" element={<StudentClasses />} />
-              <Route path="/student/grades" element={<StudentGrades />} />
-              <Route path="/student/settings" element={<StudentSettings />} />
+                {/* Student Routes */}
+                <Route path="/student" element={<StudentDashboard />} />
+                <Route
+                  path="/student/assignments"
+                  element={<StudentAssignments />}
+                />
+                <Route path="/student/classes" element={<StudentClasses />} />
+                <Route path="/student/grades" element={<StudentGrades />} />
+                <Route path="/student/settings" element={<StudentSettings />} />
 
-              {/* Catch-All Route */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+                {/* Catch-All */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+
+            </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
       </NotificationProvider>
     </AppProvider>
   );

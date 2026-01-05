@@ -7,7 +7,6 @@ import {
   BarChart3,
   Zap,
   ArrowRight,
-  CheckCircle2,
   Globe,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
@@ -166,15 +165,7 @@ export default function Index() {
             >
               <Link
                 to="/login"
-                className="
-        inline-flex items-center justify-center gap-2
-        px-8 py-3 rounded-xl
-        bg-black/40 backdrop-blur-xl
-        text-white font-semibold
-        transition-all
-        hover:bg-black/50
-      "
-              >
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-black/40 backdrop-blur-xl text-white font-semibold transition-all hover:bg-black/50">
                 {translations.getStarted}
                 <ArrowRight size={20} />
               </Link>
@@ -276,23 +267,26 @@ export default function Index() {
           >
             {[
               {
+                id: "administrators",
                 role: translations.administrators,
                 descKey: "administratorsDesc",
                 icon: "👨‍💼",
               },
               {
+                id: "teachers",
                 role: translations.teachers,
                 descKey: "teachersDesc",
                 icon: "👨‍🏫",
               },
               {
+                id: "students",
                 role: translations.students,
                 descKey: "studentsDesc",
                 icon: "👨‍🎓",
               },
-            ].map((item, index) => (
+            ].map((item) => (
               <motion.div
-                key={index}
+                key={item.id}
                 variants={itemVariants}
                 className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 text-center"
               >
@@ -326,6 +320,7 @@ export default function Index() {
               {translations.signInNow}
               <ArrowRight size={20} />
             </Link>
+            
           </motion.div>
         </motion.section>
 
@@ -340,22 +335,6 @@ export default function Index() {
       </div>
 
       {/* Global CSS for animations */}
-      <style>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   );
 }
