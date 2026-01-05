@@ -1,4 +1,19 @@
 /** @import must precede all other statements */
+@font-face {
+  font-family: 'Inter Khmer Looped';
+  src: url('/fonts/InterKhmerLooped.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Khmer Looped Italic';
+  src: url('/fonts/InterKhmerLooped-Italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,7 +124,7 @@
   /* Font for Khmer language */
   html[lang="km"],
   body.lang-km {
-    font-family: 'KhmerOS Battambang', sans-serif;
+    font-family: 'Inter Khmer Looped', sans-serif;
   }
 
   /* Font for English language */

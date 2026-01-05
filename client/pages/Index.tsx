@@ -68,8 +68,14 @@ export default function Index() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated gradient blobs */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute top-1/4 right-1/4 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       {/* Content */}
@@ -105,9 +111,9 @@ export default function Index() {
               {showLanguageMenu && (
                 <div className="absolute right-0 mt-2 w-40 bg-slate-800 border border-white/20 rounded-lg shadow-lg z-50">
                   {[
-                    { code: 'en', label: 'English' },
-                    { code: 'km', label: 'ភាសាខ្មែរ' },
-                    { code: 'fr', label: 'Français' },
+                    { code: "en", label: "English" },
+                    { code: "km", label: "ភាសាខ្មែរ" },
+                    { code: "fr", label: "Français" },
                   ].map((lang) => (
                     <button
                       key={lang.code}
@@ -115,10 +121,11 @@ export default function Index() {
                         setLanguage(lang.code as any);
                         setShowLanguageMenu(false);
                       }}
-                      className={`block w-full text-left px-4 py-2 text-sm rounded transition-colors ${language === lang.code
-                          ? 'bg-blue-600 text-white'
-                          : 'text-gray-300 hover:bg-white/10'
-                        }`}
+                      className={`block w-full text-left px-4 py-2 text-sm rounded transition-colors ${
+                        language === lang.code
+                          ? "bg-blue-600 text-white"
+                          : "text-gray-300 hover:bg-white/10"
+                      }`}
                     >
                       {lang.label}
                     </button>
@@ -165,7 +172,8 @@ export default function Index() {
             >
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-black/40 backdrop-blur-xl text-white font-semibold transition-all hover:bg-black/50">
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-black/40 backdrop-blur-xl text-white font-semibold transition-all hover:bg-black/50"
+              >
                 {translations.getStarted}
                 <ArrowRight size={20} />
               </Link>
@@ -191,18 +199,27 @@ export default function Index() {
             </motion.div>
           </motion.div>
 
-
           {/* Demo Info */}
           <motion.div
             variants={itemVariants}
             className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 max-w-md mx-auto"
           >
-            <p className="text-sm text-gray-300 mb-3">{translations.demoCredentials}</p>
+            <p className="text-sm text-gray-300 mb-3">
+              {translations.demoCredentials}
+            </p>
             <div className="space-y-2 text-left">
-              <p className="text-xs font-mono text-blue-300">Admin: admin@school.edu</p>
-              <p className="text-xs font-mono text-purple-300">Teacher: m.chen@school.edu</p>
-              <p className="text-xs font-mono text-pink-300">Student: a.rivera@student.school.edu</p>
-              <p className="text-xs text-gray-400 mt-2">Password: password (any password works)</p>
+              <p className="text-xs font-mono text-blue-300">
+                Admin: admin@school.edu
+              </p>
+              <p className="text-xs font-mono text-purple-300">
+                Teacher: m.chen@school.edu
+              </p>
+              <p className="text-xs font-mono text-pink-300">
+                Student: a.rivera@student.school.edu
+              </p>
+              <p className="text-xs text-gray-400 mt-2">
+                Password: password (any password works)
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -239,8 +256,16 @@ export default function Index() {
                   >
                     <Icon size={28} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{translations[feature.titleKey as keyof typeof translations]}</h3>
-                  <p className="text-gray-400">{translations[feature.descKey as keyof typeof translations]}</p>
+                  <h3 className="text-xl font-bold mb-2">
+                    {
+                      translations[
+                        feature.titleKey as keyof typeof translations
+                      ]
+                    }
+                  </h3>
+                  <p className="text-gray-400">
+                    {translations[feature.descKey as keyof typeof translations]}
+                  </p>
                 </motion.div>
               );
             })}
@@ -292,7 +317,9 @@ export default function Index() {
               >
                 <div className="text-5xl mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{item.role}</h3>
-                <p className="text-gray-400">{translations[item.descKey as keyof typeof translations]}</p>
+                <p className="text-gray-400">
+                  {translations[item.descKey as keyof typeof translations]}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -309,18 +336,32 @@ export default function Index() {
             variants={itemVariants}
             className="bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-md border border-white/20 rounded-2xl p-12"
           >
-            <h2 className="text-3xl font-bold mb-4">{translations.readyToTransform}</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              {translations.readyToTransform}
+            </h2>
             <p className="text-gray-300 mb-8">
               {translations.readyToTransformDesc}
             </p>
-            <Link
+            {/* <Link
               to="/login"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg font-semibold transition-all"
             >
               {translations.signInNow}
               <ArrowRight size={20} />
-            </Link>
-            
+            </Link> */}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 p-[1px]"
+            >
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-black/40 backdrop-blur-xl text-white font-semibold transition-all hover:bg-black/50"
+              >
+                {translations.signInNow}
+                <ArrowRight size={20} />
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.section>
 
@@ -330,7 +371,10 @@ export default function Index() {
           className="max-w-6xl mx-auto px-6 py-8 border-t border-white/10 text-center text-gray-400 text-sm"
         >
           {/* current year */}
-          <p>&copy; {new Date().getFullYear()} LearnX. All rights reserved. Crafted with care for education.</p>
+          <p>
+            &copy; {new Date().getFullYear()} LearnX. All rights reserved.
+            Crafted with care for education.
+          </p>
         </motion.footer>
       </div>
 

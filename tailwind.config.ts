@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         poppins: ["'Poppins'", "sans-serif"],
-        khmer: ["'KhmerOS Battambang'", "sans-serif"],
+        khmer: ["'Inter Khmer Looped'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
