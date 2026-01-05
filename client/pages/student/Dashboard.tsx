@@ -42,8 +42,8 @@ export default function StudentDashboard() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-4xl font-bold text-gray-900">My Dashboard</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">My Dashboard</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Welcome back, {currentUser.name}! Here's your learning overview.
         </p>
       </motion.div>
@@ -83,7 +83,7 @@ export default function StudentDashboard() {
         transition={{ delay: 0.2 }}
         className="mb-8"
       >
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Enrolled Classes
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,8 +93,8 @@ export default function StudentDashboard() {
             ))
           ) : (
             <div className="col-span-full py-12 text-center">
-              <BookOpen size={48} className="mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-600">No classes enrolled yet</p>
+              <BookOpen size={48} className="mx-auto text-gray-400 dark:text-gray-600 mb-4" />
+              <p className="text-gray-600 dark:text-gray-400">No classes enrolled yet</p>
             </div>
           )}
         </div>
@@ -106,7 +106,7 @@ export default function StudentDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Upcoming Assignments
         </h2>
         <div className="grid grid-cols-1 gap-4">
@@ -117,21 +117,21 @@ export default function StudentDashboard() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-all"
+                className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-4 hover:shadow-md dark:hover:shadow-lg transition-all"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-gray-900 dark:text-white">
                       {assignment.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       {assignment.description}
                     </p>
                     <div className="flex items-center gap-2 mt-3">
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
                         Due: {assignment.dueDate.toLocaleDateString()}
                       </span>
-                      <span className="text-xs font-medium text-blue-600">
+                      <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
                         {assignment.points} points
                       </span>
                     </div>
@@ -142,8 +142,8 @@ export default function StudentDashboard() {
             ))
           ) : (
             <div className="text-center py-8">
-              <FileText size={48} className="mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-600">No upcoming assignments</p>
+              <FileText size={48} className="mx-auto text-gray-400 dark:text-gray-600 mb-4" />
+              <p className="text-gray-600 dark:text-gray-400">No upcoming assignments</p>
             </div>
           )}
         </div>

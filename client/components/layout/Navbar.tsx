@@ -1,9 +1,10 @@
-import { Search, Moon, Sun, Globe } from "lucide-react";
+import { Moon, Sun, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { User } from "@/types";
 import { useApp } from "@/context/AppContext";
 import { useState } from "react";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+import { SearchBar } from "../ui/search-bar";
 
 interface NavbarProps {
   user: User;
@@ -16,22 +17,10 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
 
   return (
     <nav className="sticky top-0 z-30 backdrop-blur-sm bg-white/50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-700">
-      <div className={sidebarOpen ? "ml-[280px]" : "ml-20"}>
+      <div className={`transition-all duration-300 ease-in-out ${sidebarOpen ? "ml-[280px]" : "ml-20"}`}>
         <div className="flex items-center justify-between px-6 py-4">
           {/* Left side - Search */}
-          <div className="flex-1 max-w-md">
-            <div className="relative">
-              <Search
-                size={18}
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
-              />
-              <input
-                type="text"
-                placeholder={translations.search}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-slate-600 text-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
+          <SearchBar placeholder="Search classes, assignments, users..." />
 
           {/* Right side - Icons & User */}
           <div className="flex items-center gap-4 ml-6">
@@ -74,7 +63,7 @@ export function Navbar({ user, sidebarOpen }: NavbarProps) {
                     >
                       {[
                         { code: 'en', label: 'English' },
-                        { code: 'km', label: 'ខ្មែរ' },
+                        { code: 'km', label: 'ភាសាខ្មែរ' },
                         { code: 'fr', label: 'Français' },
                       ].map((lang) => (
                         <button

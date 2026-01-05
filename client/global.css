@@ -134,4 +134,43 @@
     overflow-x: auto;
     white-space: pre;
   }
+
+  /* Custom scrollbar styling */
+  .scrollbar-hide {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #cbd5e1 transparent; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    width: 6px; /* Chrome, Safari and Opera */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+
+  /* Dark mode scrollbar */
+  .dark .scrollbar-hide {
+    scrollbar-color: #475569 transparent;
+  }
+
+  .dark .scrollbar-hide::-webkit-scrollbar-thumb {
+    background-color: #475569;
+    background-clip: content-box;
+  }
+
+  .dark .scrollbar-hide::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
+  }
 }

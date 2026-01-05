@@ -23,7 +23,7 @@ export function DashboardCard({
   variant = "default",
 }: DashboardCardProps) {
   const baseClass =
-    "bg-white rounded-xl shadow-sm border border-gray-100 p-6 cursor-pointer transition-all duration-300 hover:shadow-md hover:border-gray-200";
+    "bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 cursor-pointer transition-all duration-300 hover:shadow-md dark:hover:shadow-lg hover:border-gray-200 dark:hover:border-slate-600";
   const variantClass =
     variant === "stat" ? "min-h-[140px] flex flex-col justify-between" : "";
 
@@ -42,13 +42,13 @@ export function DashboardCard({
         <div className="space-y-2">
           {icon && <div className="text-2xl">{icon}</div>}
           {title && (
-            <p className="text-sm font-medium text-gray-600">{title}</p>
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
           )}
           {value && (
-            <p className="text-3xl font-bold text-gray-900">{value}</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">{value}</p>
           )}
           {subtitle && (
-            <p className="text-xs text-gray-500">{subtitle}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>
           )}
         </div>
       )}

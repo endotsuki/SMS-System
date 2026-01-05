@@ -116,46 +116,54 @@ export function Sidebar({
       </div>
 
       {/* Navigation Items */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3">
+      <nav className="flex-1 overflow-y-auto py-4 px-4">
         <div className="gap-2 flex flex-col">
           {items.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
 
             return (
-              <Link key={item.path} to={item.path}>
-                <motion.div
-                  whileHover={{ x: isOpen ? 2 : 0 }}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${isActive
-                    ? "bg-blue-500 text-white shadow-sm"
+              <motion.div
+                key={item.path}
+                whileHover={{ x: isOpen ? 2 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Button
+                  asChild
+                  size="icon"
+                  variant="ghost"
+                  className={`w-full justify-start px-3 py-6 rounded-xl transition-colors ${isActive
+                    ? "bg-blue-500/30 backdrop-blur-lg text-white shadow-sm hover:bg-blue-500/40"
                     : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
                     } ${!isOpen ? "justify-center" : ""}`}
                   title={!isOpen ? getNavLabel(item.label) : undefined}
                 >
-                  <Icon size={20} className="flex-shrink-0" />
-                  {isOpen && (
-                    <motion.span
-                      initial={{ opacity: 0, width: 0 }}
-                      animate={{
-                        opacity: 1,
-                        width: "auto",
-                      }}
-                      exit={{ opacity: 0, width: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-sm font-medium whitespace-nowrap"
-                    >
-                      {getNavLabel(item.label)}
-                    </motion.span>
-                  )}
-                </motion.div>
-              </Link>
+                  <Link to={item.path} className="flex items-center gap-3 w-full">
+                    <Icon size={20} className="flex-shrink-0" />
+                    {isOpen && (
+                      <motion.span
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{
+                          opacity: 1,
+                          width: "auto",
+                        }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-sm font-medium whitespace-nowrap"
+                      >
+                        {getNavLabel(item.label)}
+                      </motion.span>
+                    )}
+                  </Link>
+                </Button>
+              </motion.div>
             );
           })}
         </div>
       </nav>
 
       {/* User Info & Logout */}
-      <div className="border-t border-slate-200/50 dark:border-slate-700/50 p-3 space-y-2">
+      <div className="border-t border-slate-200/50 dark:border-slate-700/50 p-3 space-y-4 mb-5">
         {/* User Profile */}
         <div className={`flex items-center gap-3 px-2 ${!isOpen ? "justify-center" : ""}`}>
           <div className="flex-shrink-0">
@@ -193,9 +201,10 @@ export function Sidebar({
         </div>
 
         {/* Logout Button */}
-        <button
+        <Button
           onClick={onLogout}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors ${!isOpen ? "justify-center" : ""
+          variant="destructive"
+          className={`rounded-xl ${!isOpen ? "justify-center" : ""
             }`}
           title={!isOpen ? translations.logout : undefined}
         >
@@ -214,7 +223,7 @@ export function Sidebar({
               {translations.logout}
             </motion.span>
           )}
-        </button>
+        </Button>
       </div>
     </motion.div>
   );

@@ -22,7 +22,7 @@ export const khmer: Translations = {
   lightMode: 'របៀបលឺក',
 
   // Navigation
-  myClasses: 'ថ្នាក់ឯងឯង',
+  myClasses: 'ថ្នាក់របស់ខ្ញុំ',
   assignments: 'ភារកិច្ច',
   grades: 'ពិន្ទុ',
   users: 'អ្នកប្រើប្រាស់',
@@ -109,7 +109,7 @@ export const khmer: Translations = {
   noGrades: 'មិនមានពិន្ទុនៅឡើយ',
 
   // Teachers
-  myClassesList: 'ថ្នាក់ឯងឯង',
+  myClassesList: 'បញ្ជីថ្នាក់របស់ខ្ញុំ',
   createClass: 'បង្កើតថ្នាក់រៀន',
   classCode: 'លេខលេខរៀង',
   description: 'ការពិពណ៌នា',

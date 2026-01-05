@@ -194,67 +194,6 @@ export default function StudentSettings() {
 
         {/* Sidebar Settings */}
         <div className="space-y-6">
-          {/* Theme Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-6"
-          >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-              {translations.theme}
-            </h3>
-            <div className="space-y-2">
-              <button
-                onClick={toggleTheme}
-                className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
-                  theme === 'light'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white'
-                }`}
-              >
-                Light
-              </button>
-              <button
-                onClick={toggleTheme}
-                className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
-                  theme === 'dark'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white'
-                }`}
-              >
-                Dark
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Language Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-6"
-          >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-              {translations.language}
-            </h3>
-            <div className="space-y-2">
-              {(['en', 'km', 'fr'] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`w-full px-4 py-2 rounded-lg font-medium transition-colors text-left ${
-                    language === lang
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white'
-                  }`}
-                >
-                  {lang === 'en' ? 'English' : lang === 'km' ? 'ខ្មែរ' : 'Français'}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
           {/* Notifications Settings */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
