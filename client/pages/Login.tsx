@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import type { UserRole } from '@/types';
 import { mockUsers } from '@/data/mock';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
-import { IconBook, IconLock, IconMail, IconUser } from '@tabler/icons-react';
+import { IconBook, IconLock, IconMail, IconUser, IconEye, IconEyeOff } from '@tabler/icons-react';
+import { Button } from '@headlessui/react';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export default function Login() {
   const [selectedRole, setSelectedRole] = useState<UserRole>('admin');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const roles: Array<{ value: UserRole; label: string; icon: any; description: string }> = [
     {
@@ -98,11 +99,9 @@ export default function Login() {
         {/* Header */}
         <motion.div variants={itemVariants} className='mb-8 text-center'>
           <div className='mb-4 flex justify-center'>
-            <div className='rounded-full bg-gradient-to-br from-blue-600 to-purple-600 p-4'>
-              <IconBook className='h-8 w-8 text-white' />
-            </div>
+            <img src='/logo.png' alt='' className='h-16 w-auto' />
           </div>
-          <h1 className='mb-2 text-4xl font-bold text-white'>LearnX</h1>
+          <h1 className='mb-2 text-4xl font-medium text-white'>SMS System</h1>
           <p className='text-lg text-gray-300'>School Management System</p>
         </motion.div>
 
@@ -112,11 +111,11 @@ export default function Login() {
           className='overflow-hidden rounded-2xl border border-slate-700 bg-slate-800 shadow-2xl backdrop-blur-sm dark:bg-slate-800/80'
         >
           <div className='p-8'>
-            <h2 className='mb-6 text-2xl font-bold text-white'>Welcome Back</h2>
+            <h2 className='mb-6 text-2xl font-medium text-white'>Welcome Back</h2>
 
             {/* Role Selector */}
             <motion.div variants={itemVariants} className='mb-8'>
-              <label className='mb-3 block text-sm font-semibold text-white'>Login as:</label>
+              <label className='mb-3 block text-base font-light text-white'>Login as:</label>
               <div className='grid grid-cols-3 gap-3'>
                 {roles.map((role) => {
                   const RoleIcon = role.icon;
@@ -135,7 +134,7 @@ export default function Login() {
                       }`}
                     >
                       <RoleIcon className='mx-auto mb-1 h-6 w-6' />
-                      <p className='text-xs font-semibold'>{role.label}</p>
+                      <p className='text-xs'>{role.label}</p>
                     </motion.button>
                   );
                 })}
@@ -165,12 +164,19 @@ export default function Login() {
                 <div className='relative'>
                   <IconLock className='absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-500' />
                   <Input
-                    type='password'
+                    type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='••••••••'
-                    className='w-full rounded-lg border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-4 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    className='w-full rounded-lg border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-12 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
                   />
+                  <button
+                    type='button'
+                    onClick={() => setShowPassword(!showPassword)}
+                    className='absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-300'
+                  >
+                    {showPassword ? <IconEyeOff className='h-5 w-5' /> : <IconEye className='h-5 w-5' />}
+                  </button>
                 </div>
               </motion.div>
 
@@ -196,14 +202,13 @@ export default function Login() {
               {/* Login Button */}
               <motion.div
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className='mt-6 rounded-xl bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-pink-500/50 p-[1px]'
+                className='mt-6 rounded-xl bg-gradient-to-r from-blue-500/40 to-pink-500/40 p-[1px]'
               >
-                <motion.button
+                <Button
                   type='submit'
                   disabled={isLoading}
-                  className='w-full rounded-xl bg-black/40 py-2.5 font-semibold text-white backdrop-blur-xl hover:bg-black/50 disabled:cursor-not-allowed disabled:opacity-50'
+                  className='w-full rounded-xl bg-black/40 py-2.5 text-white backdrop-blur-xl hover:bg-black/20 disabled:cursor-not-allowed disabled:opacity-50'
                 >
                   {isLoading ? (
                     <span className='flex items-center justify-center gap-2'>
@@ -217,7 +222,7 @@ export default function Login() {
                   ) : (
                     'Sign In'
                   )}
-                </motion.button>
+                </Button>
               </motion.div>
             </form>
 

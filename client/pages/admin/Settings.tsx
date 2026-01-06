@@ -32,7 +32,7 @@ export default function AdminSettings() {
   return (
     <AppLayout user={currentUser} onLogout={handleLogout}>
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className='text-4xl font-bold text-gray-900 dark:text-white'>{translations.systemSettings}</h1>
+        <h1 className='text-4xl font-semibold text-gray-900 dark:text-white'>{translations.systemSettings}</h1>
         <p className='mt-2 text-gray-600 dark:text-gray-400'>{translations.manageSchool}</p>
       </motion.div>
 
@@ -46,7 +46,7 @@ export default function AdminSettings() {
             transition={{ delay: 0.1 }}
             className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
           >
-            <h2 className='mb-6 text-2xl font-bold text-gray-900 dark:text-white'>{translations.accountSettings}</h2>
+            <h2 className='mb-6 text-2xl font-semibold text-gray-900 dark:text-white'>{translations.accountSettings}</h2>
 
             <div className='space-y-6'>
               <div>
@@ -90,7 +90,7 @@ export default function AdminSettings() {
           >
             <div className='mb-6 flex items-center gap-2'>
               <IconLock size={24} className='text-blue-600 dark:text-blue-400' />
-              <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>{translations.changePassword}</h2>
+              <h2 className='text-2xl font-semibold text-gray-900 dark:text-white'>{translations.changePassword}</h2>
             </div>
 
             <div className='space-y-4'>
@@ -218,7 +218,7 @@ export default function AdminSettings() {
           >
             <div className='mb-4 flex items-center gap-2'>
               <IconBell size={20} className='text-blue-600 dark:text-blue-400' />
-              <h3 className='text-lg font-bold text-gray-900 dark:text-white'>{translations.notifications}</h3>
+              <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>{translations.notifications}</h3>
             </div>
             <div className='space-y-3'>
               <label className='flex cursor-pointer items-center gap-3'>

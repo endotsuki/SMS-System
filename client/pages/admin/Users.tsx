@@ -10,6 +10,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@
 import { Avatar } from '@/components/ui/avatar';
 import { AvatarImage } from '@radix-ui/react-avatar';
 import { IconDotsVertical, IconPlus, IconSearch } from '@tabler/icons-react';
+import { Input } from '@headlessui/react';
 
 export default function AdminUsers() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -67,7 +68,7 @@ export default function AdminUsers() {
   return (
     <AppLayout user={currentUser} onLogout={handleLogout}>
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className='text-4xl font-bold text-gray-900 dark:text-white'>{translations.users}</h1>
+        <h1 className='text-4xl font-semibold text-gray-900 dark:text-white'>{translations.users}</h1>
         <p className='mt-2 text-gray-600 dark:text-gray-400'>{translations.manageUsers}</p>
       </motion.div>
 
@@ -105,12 +106,12 @@ export default function AdminUsers() {
       >
         <div className='relative w-full sm:w-96'>
           <IconSearch size={18} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400' />
-          <input
+          <Input
             type='text'
             placeholder={translations.search}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='w-full rounded-lg border border-gray-200 bg-white py-2 pl-10 pr-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white'
+            className='w-full rounded-full border border-gray-200 bg-white py-2 pl-10 pr-4 text-gray-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white'
           />
         </div>
         <div className='flex items-center gap-2'>
@@ -178,7 +179,7 @@ export default function AdminUsers() {
                     <td className='px-6 py-4 text-gray-600 dark:text-gray-400'>{user.department}</td>
                     <td className='px-6 py-4 text-gray-600 dark:text-gray-400'>{user.phone}</td>
                     <td className='px-6 py-4'>
-                      <Button variant='ghost'>
+                      <Button variant='ghost' size='icon'>
                         <IconDotsVertical size={18} />
                       </Button>
                     </td>

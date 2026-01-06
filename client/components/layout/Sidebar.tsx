@@ -91,7 +91,10 @@ export function Sidebar({ userRole, userName, userAvatar, onLogout, isOpen = tru
             transition={{ duration: 0.2 }}
             className='overflow-hidden'
           >
-            <h1 className='whitespace-nowrap text-lg font-bold text-slate-900 dark:text-white'>LearnX</h1>
+            <div className='flex items-center gap-2'>
+              <img src='/logo.png' alt='LearnX Logo' className='h-8 w-auto' />
+              <span className='text-lg font-medium'>SMS System</span>
+            </div>
           </motion.div>
           <Button
             variant='ghost'

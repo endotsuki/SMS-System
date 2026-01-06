@@ -40,7 +40,7 @@ export default function AdminClasses() {
   return (
     <AppLayout user={currentUser} onLogout={handleLogout}>
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className='text-4xl font-bold text-gray-900 dark:text-white'>{translations.classes}</h1>
+        <h1 className='text-4xl font-semibold text-gray-900 dark:text-white'>{translations.classes}</h1>
         <p className='mt-2 text-gray-600 dark:text-gray-400'>
           {mockClasses.length} {translations.activeClasses}
         </p>

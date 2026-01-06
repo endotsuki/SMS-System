@@ -27,7 +27,7 @@ export function LanguageChanger() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className='absolute right-0 z-50 mt-3 w-48 overflow-hidden rounded-xl border border-white/20 bg-popover/50 shadow-xl shadow-black/10 backdrop-blur-md dark:border-slate-700/50'
+              className='absolute right-0 z-50 mt-5 w-48 overflow-hidden rounded-xl border border-white/20 bg-popover/60 p-1 shadow-xl shadow-black/10 backdrop-blur-xl dark:border-slate-700/50'
             >
               {[
                 { code: 'en', label: 'English' },
@@ -37,20 +37,21 @@ export function LanguageChanger() {
                 const isActive = language === lang.code;
 
                 return (
-                  <button
+                  <Button
+                    variant='ghost'
                     key={lang.code}
                     onClick={() => {
                       setLanguage(lang.code as any);
                       setShowLanguageMenu(false);
                     }}
-                    className={`w-full px-4 py-2 text-left text-sm duration-150 ${
+                    className={`my-1 w-full px-4 py-2 text-left text-sm duration-150 ${
                       isActive
                         ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
                         : 'text-gray-800 hover:bg-white/30 dark:text-gray-200 dark:hover:bg-slate-700/40'
                     } `}
                   >
                     {lang.label}
-                  </button>
+                  </Button>
                 );
               })}
             </motion.div>

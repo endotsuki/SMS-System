@@ -10,25 +10,25 @@ const features = [
     icon: IconUsers,
     titleKey: 'roleBasedAccess',
     descKey: 'roleBasedAccessDesc',
-    color: 'from-blue-400 to-blue-600',
+    color: 'from-blue-400/30 to-blue-600/30',
   },
   {
     icon: IconBook,
     titleKey: 'classManagement',
     descKey: 'classManagementDesc',
-    color: 'from-purple-400 to-purple-600',
+    color: 'from-purple-400/30 to-purple-600/30',
   },
   {
     icon: IconChartBarPopular,
     titleKey: 'performanceAnalytics',
     descKey: 'performanceAnalyticsDesc',
-    color: 'from-pink-400 to-pink-600',
+    color: 'from-pink-400/30 to-pink-600/30',
   },
   {
     icon: IconBolt,
     titleKey: 'realTimeUpdates',
     descKey: 'realTimeUpdatesDesc',
-    color: 'from-green-400 to-green-600',
+    color: 'from-green-400/30 to-green-600/30',
   },
 ];
 
@@ -82,10 +82,8 @@ export default function Index() {
           className='mx-auto flex max-w-7xl items-center justify-between px-6 py-4'
         >
           <div className='flex items-center gap-2'>
-            <div className='rounded-full bg-white/20 p-2 backdrop-blur-md'>
-              <IconBook size={28} />
-            </div>
-            <span className='text-2xl font-bold'>LearnX</span>
+            <img src='/logo.png' alt='LearnX Logo' className='h-8 w-auto' />
+            <span className='text-lg font-medium'>SMS System</span>
           </div>
           <div className='flex items-center gap-4'>
             <Link
@@ -102,7 +100,7 @@ export default function Index() {
 
         {/* Hero Section */}
         <motion.div variants={containerVariants} initial='hidden' animate='visible' className='mx-auto max-w-6xl px-6 py-20 text-center'>
-          <motion.h1 variants={itemVariants} className='mb-6 text-5xl font-bold leading-tight md:text-7xl'>
+          <motion.h1 variants={itemVariants} className='mb-6 text-5xl font-medium leading-tight md:text-7xl'>
             {translations.moderWayToManage}{' '}
             <span className='bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent'>
               {translations.education}
@@ -158,7 +156,7 @@ export default function Index() {
 
         {/* Features Section */}
         <motion.section variants={containerVariants} initial='hidden' animate='visible' className='mx-auto max-w-6xl px-6 py-20'>
-          <motion.h2 variants={itemVariants} className='mb-12 text-center text-4xl font-bold'>
+          <motion.h2 variants={itemVariants} className='mb-12 text-center text-5xl font-medium'>
             {translations.powerfulFeatures}
           </motion.h2>
 
@@ -169,13 +167,13 @@ export default function Index() {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className='rounded-xl border border-white/20 bg-white/10 p-8 backdrop-blur-md hover:bg-white/15'
+                  className='rounded-3xl border border-white/20 bg-white/10 p-8 backdrop-blur-md hover:bg-white/15'
                   whileHover={{ y: -4 }}
                 >
-                  <div className={`inline-block rounded-lg bg-gradient-to-br p-3 ${feature.color} mb-4`}>
+                  <div className={`inline-block rounded-2xl bg-gradient-to-br p-3 backdrop-blur-md ${feature.color} mb-4`}>
                     <Icon size={28} />
                   </div>
-                  <h3 className='mb-2 text-xl font-bold'>{translations[feature.titleKey as keyof typeof translations]}</h3>
+                  <h3 className='mb-2 text-xl font-semibold'>{translations[feature.titleKey as keyof typeof translations]}</h3>
                   <p className='text-gray-400'>{translations[feature.descKey as keyof typeof translations]}</p>
                 </motion.div>
               );
@@ -185,7 +183,7 @@ export default function Index() {
 
         {/* User Roles Section */}
         <motion.section variants={containerVariants} initial='hidden' animate='visible' className='mx-auto max-w-6xl px-6 py-20'>
-          <motion.h2 variants={itemVariants} className='mb-12 text-center text-4xl font-bold'>
+          <motion.h2 variants={itemVariants} className='mb-12 text-center text-5xl font-medium'>
             {translations.builtForEveryone}
           </motion.h2>
 
@@ -213,10 +211,10 @@ export default function Index() {
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className='rounded-xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-md'
+                className='rounded-3xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-md'
               >
                 <div className='mb-4 text-5xl'>{item.icon}</div>
-                <h3 className='mb-2 text-xl font-bold'>{item.role}</h3>
+                <h3 className='mb-2 text-xl font-semibold'>{item.role}</h3>
                 <p className='text-gray-400'>{translations[item.descKey as keyof typeof translations]}</p>
               </motion.div>
             ))}

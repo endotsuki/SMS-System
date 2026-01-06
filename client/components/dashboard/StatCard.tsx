@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons-react';
+import { IconTrendingDown, IconTrendingUp } from '@tabler/icons-react';
 
 interface StatCardProps {
   label: string;
@@ -58,8 +58,8 @@ export function StatCard({ label, value, icon, change, changeLabel, trend = 'neu
                   : 'text-gray-600 dark:text-gray-400'
             }`}
           >
-            {trend === 'up' && <IconArrowUpRight size={14} />}
-            {trend === 'down' && <IconArrowDownRight size={14} />}
+            {trend === 'up' && <IconTrendingUp size={23} />}
+            {trend === 'down' && <IconTrendingDown size={23} />}
             {Math.abs(change)}%
           </div>
         )}

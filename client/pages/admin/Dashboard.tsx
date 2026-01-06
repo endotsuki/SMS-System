@@ -57,7 +57,7 @@ export default function AdminDashboard() {
     <AppLayout user={currentUser} onLogout={handleLogout}>
       {/* Page Header */}
       <motion.div initial='hidden' animate='visible' variants={fadeUp} className='mb-10'>
-        <h1 className='text-4xl font-bold text-gray-900 dark:text-white'>Dashboard</h1>
+        <h1 className='text-5xl font-semibold text-gray-900 dark:text-white'>Dashboard</h1>
         <p className='mt-2 text-gray-600 dark:text-gray-400'>Welcome back, {currentUser.name}! Here's an overview of your school.</p>
       </motion.div>
 
@@ -110,7 +110,7 @@ export default function AdminDashboard() {
         <motion.div variants={fadeUp} initial='hidden' animate='visible' className='lg:col-span-2'>
           <div className='mb-6 flex items-center justify-between'>
             <div>
-              <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>Classes</h2>
+              <h2 className='text-2xl font-semibold text-gray-900 dark:text-white'>Classes</h2>
               <p className='text-sm text-gray-600 dark:text-gray-400'>{mockClasses.length} active classes</p>
             </div>
 
@@ -135,7 +135,7 @@ export default function AdminDashboard() {
           className='h-fit rounded-2xl border border-white/20 bg-white/40 p-6 shadow-lg shadow-black/5 backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-800/40'
         >
           <div className='mb-6 flex items-center justify-between'>
-            <h2 className='text-xl font-bold text-gray-900 dark:text-white'>Announcements</h2>
+            <h2 className='text-xl font-medium text-gray-900 dark:text-white'>Announcements</h2>
             <IconBell size={20} className='text-blue-500' />
           </div>
 
