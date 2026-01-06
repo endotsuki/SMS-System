@@ -6,6 +6,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { BookOpen, Plus } from "lucide-react";
 import { getClassesByTeacher } from "@/data/mock";
 import { ClassCard } from "@/components/dashboard/ClassCard";
+import { Button } from "@/components/ui/button";
 
 export default function TeacherDashboard() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -57,14 +58,10 @@ export default function TeacherDashboard() {
               {myClasses.length} classes assigned
             </p>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 bg-blue-600 dark:bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-700 transition-colors font-medium shadow-sm hover:shadow-md"
-          >
+          <Button variant="secondary">
             <Plus size={18} />
             New Class
-          </motion.button>
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

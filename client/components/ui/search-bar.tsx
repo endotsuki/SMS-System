@@ -1,14 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-import { Search, X, BookOpen, FileText, Users } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { mockClasses, mockAssignments, mockUsers } from "@/data/mock";
-import { Input } from "./input";
-import { Button } from "./button";
+import { useState, useRef, useEffect } from 'react';
+import { Search, X, BookOpen, FileText, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { mockClasses, mockAssignments, mockUsers } from '@/data/mock';
+import { Input } from './input';
+import { Button } from './button';
 
 interface SearchResult {
   id: string;
-  type: "class" | "assignment" | "user";
+  type: 'class' | 'assignment' | 'user';
   title: string;
   description?: string;
   icon: React.ReactNode;
@@ -19,8 +19,8 @@ interface SearchBarProps {
   placeholder?: string;
 }
 
-export function SearchBar({ placeholder = "Search classes, assignments, users..." }: SearchBarProps) {
-  const [searchTerm, setSearchTerm] = useState("");
+export function SearchBar({ placeholder = 'Search classes, assignments, users...' }: SearchBarProps) {
+  const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -40,12 +40,10 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
 
     // Search classes
     Object.values(mockClasses).forEach((cls) => {
-      if (
-        cls.name.toLowerCase().includes(query)
-      ) {
+      if (cls.name.toLowerCase().includes(query)) {
         searchResults.push({
           id: cls.id,
-          type: "class",
+          type: 'class',
           title: cls.name,
           description: cls.name,
           icon: <BookOpen size={16} />,
@@ -56,15 +54,12 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
 
     // Search assignments
     Object.values(mockAssignments).forEach((assignment) => {
-      if (
-        assignment.title.toLowerCase().includes(query) ||
-        assignment.description.toLowerCase().includes(query)
-      ) {
+      if (assignment.title.toLowerCase().includes(query) || assignment.description.toLowerCase().includes(query)) {
         searchResults.push({
           id: assignment.id,
-          type: "assignment",
+          type: 'assignment',
           title: assignment.title,
-          description: assignment.description.substring(0, 50) + "...",
+          description: assignment.description.substring(0, 50) + '...',
           icon: <FileText size={16} />,
           path: `/assignment/${assignment.id}`,
         });
@@ -73,13 +68,10 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
 
     // Search users
     Object.values(mockUsers).forEach((user) => {
-      if (
-        user.name.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query)
-      ) {
+      if (user.name.toLowerCase().includes(query) || user.email.toLowerCase().includes(query)) {
         searchResults.push({
           id: user.id,
-          type: "user",
+          type: 'user',
           title: user.name,
           description: `${user.role} · ${user.department}`,
           icon: <Users size={16} />,
@@ -96,23 +88,21 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
     if (!isOpen || results.length === 0) return;
 
     switch (e.key) {
-      case "ArrowDown":
+      case 'ArrowDown':
         e.preventDefault();
-        setSelectedIndex((prev) =>
-          prev < results.length - 1 ? prev + 1 : prev
-        );
+        setSelectedIndex((prev) => (prev < results.length - 1 ? prev + 1 : prev));
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         e.preventDefault();
         setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
         break;
-      case "Enter":
+      case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0) {
           handleSelectResult(results[selectedIndex]);
         }
         break;
-      case "Escape":
+      case 'Escape':
         setIsOpen(false);
         setSelectedIndex(-1);
         break;
@@ -123,41 +113,41 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
     if (result.path) {
       navigate(result.path);
     }
-    setSearchTerm("");
+    setSearchTerm('');
     setIsOpen(false);
   };
 
   const clearSearch = () => {
-    setSearchTerm("");
+    setSearchTerm('');
     setResults([]);
     setIsOpen(false);
     inputRef.current?.focus();
   };
 
   return (
-    <div className="flex-1 max-w-md relative">
-      <div className="relative">
+    <div className='relative max-w-md flex-1'>
+      <div className='relative'>
         <Search
           size={18}
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none"
+          className='pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400 dark:text-gray-500'
         />
         <Input
           ref={inputRef}
-          type="text"
+          type='text'
           placeholder={placeholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={() => searchTerm && setIsOpen(true)}
-          className="w-full pl-10 pr-10 py-2 rounded-full border border-gray-200 dark:border-slate-600 text-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-colors"
+          className='w-full rounded-full border border-gray-200 bg-white py-2 pl-10 pr-10 text-sm text-gray-900 placeholder-gray-500 transition-colors focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400'
         />
-        
+
         {/* Clear button */}
         {searchTerm && (
           <Button
-            variant="ghost"
+            variant='ghost'
             onClick={clearSearch}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 h-auto text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-slate-700 rounded transition-colors cursor-pointer"
+            className='absolute right-3 top-1/2 h-auto -translate-y-1/2 transform cursor-pointer rounded p-1 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-700 dark:text-gray-500 dark:hover:bg-slate-700 dark:hover:text-gray-200'
           >
             <X size={16} />
           </Button>
@@ -169,10 +159,7 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
         {isOpen && results.length > 0 && (
           <>
             {/* Backdrop */}
-            <div
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40"
-            />
+            <div onClick={() => setIsOpen(false)} className='fixed inset-0 z-40' />
 
             {/* Results Menu */}
             <motion.div
@@ -180,40 +167,32 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
               animate={{ opacity: 1, y: 0, scaleY: 1 }}
               exit={{ opacity: 0, y: -10, scaleY: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50 overflow-hidden"
+              className='absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800'
             >
-              <div className="max-h-96 overflow-y-auto scrollbar-hide">
+              <div className='scrollbar-hide max-h-96 overflow-y-auto'>
                 {results.map((result, index) => (
                   <motion.button
                     key={result.id}
                     onClick={() => handleSelectResult(result)}
                     onMouseEnter={() => setSelectedIndex(index)}
-                    className={`w-full flex items-start gap-3 px-4 py-3 border-b border-gray-100 dark:border-slate-700 last:border-b-0 transition-all duration-150 text-left cursor-pointer ${
+                    className={`flex w-full cursor-pointer items-start gap-3 border-b border-gray-100 px-4 py-3 text-left duration-150 last:border-b-0 dark:border-slate-700 ${
                       selectedIndex === index
-                        ? "bg-blue-100 dark:bg-blue-900/50 border-l-4 border-l-blue-500"
-                        : "hover:bg-slate-50 dark:hover:bg-slate-700/40"
+                        ? 'border-l-4 border-l-blue-500 bg-blue-100 dark:bg-blue-900/50'
+                        : 'hover:bg-slate-50 dark:hover:bg-slate-700/40'
                     }`}
-                    whileHover={{ paddingLeft: "1.25rem" }}
+                    whileHover={{ paddingLeft: '1.25rem' }}
                   >
                     {/* Icon */}
-                    <div className="flex-shrink-0 mt-1 text-gray-400 dark:text-gray-500">
-                      {result.icon}
-                    </div>
+                    <div className='mt-1 flex-shrink-0 text-gray-400 dark:text-gray-500'>{result.icon}</div>
 
                     {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                        {result.title}
-                      </p>
-                      {result.description && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                          {result.description}
-                        </p>
-                      )}
+                    <div className='min-w-0 flex-1'>
+                      <p className='truncate text-sm font-medium text-gray-900 dark:text-white'>{result.title}</p>
+                      {result.description && <p className='truncate text-xs text-gray-500 dark:text-gray-400'>{result.description}</p>}
                     </div>
 
                     {/* Type badge */}
-                    <span className="flex-shrink-0 text-xs px-2 py-1 rounded bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 capitalize">
+                    <span className='flex-shrink-0 rounded bg-gray-100 px-2 py-1 text-xs capitalize text-gray-600 dark:bg-slate-700 dark:text-gray-300'>
                       {result.type}
                     </span>
                   </motion.button>
@@ -221,8 +200,8 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
               </div>
 
               {/* Footer */}
-              <div className="px-4 py-2 border-t border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 text-xs text-gray-500 dark:text-gray-400">
-                Showing {results.length} result{results.length !== 1 ? "s" : ""} · Use ↑↓ to navigate, Enter to select
+              <div className='border-t border-gray-100 bg-gray-50 px-4 py-2 text-xs text-gray-500 dark:border-slate-700 dark:bg-slate-900 dark:text-gray-400'>
+                Showing {results.length} result{results.length !== 1 ? 's' : ''} · Use ↑↓ to navigate, Enter to select
               </div>
             </motion.div>
           </>
@@ -233,19 +212,14 @@ export function SearchBar({ placeholder = "Search classes, assignments, users...
       <AnimatePresence>
         {isOpen && searchTerm && results.length === 0 && (
           <>
-            <div
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40"
-            />
+            <div onClick={() => setIsOpen(false)} className='fixed inset-0 z-40' />
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg z-50 px-4 py-3 text-center"
+              className='absolute left-0 right-0 top-full z-50 mt-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-center shadow-lg dark:border-slate-700 dark:bg-slate-800'
             >
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                No results found for "{searchTerm}"
-              </p>
+              <p className='text-sm text-gray-500 dark:text-gray-400'>No results found for "{searchTerm}"</p>
             </motion.div>
           </>
         )}
