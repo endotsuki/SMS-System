@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import type { UserRole } from '@/types';
 import { mockUsers } from '@/data/mock';
 import { Input } from '@/components/ui/input';
-import { IconBook, IconLock, IconMail, IconUser, IconEye, IconEyeOff } from '@tabler/icons-react';
-import { Button } from '@headlessui/react';
+import { IconLock, IconMail, IconUserHexagon, IconEye, IconEyeOff, IconSchool, IconChalkboardTeacher } from '@tabler/icons-react';
+import { Button } from '@/components/ui/button';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,19 +20,19 @@ export default function Login() {
     {
       value: 'admin',
       label: 'Admin',
-      icon: IconUser,
+      icon: IconUserHexagon,
       description: 'Manage school & users',
     },
     {
       value: 'teacher',
       label: 'Teacher',
-      icon: IconBook,
+      icon: IconChalkboardTeacher,
       description: 'Manage classes & grades',
     },
     {
       value: 'student',
       label: 'Student',
-      icon: IconBook,
+      icon: IconSchool,
       description: 'View assignments & grades',
     },
   ];
@@ -125,11 +125,10 @@ export default function Login() {
                     <motion.button
                       key={role.value}
                       onClick={() => setSelectedRole(role.value)}
-                      whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`rounded-xl p-4 text-center ${
+                      className={`rounded-2xl border-2 border-white/10 p-4 text-center ${
                         isSelected
-                          ? 'bg-gradient-to-br from-blue-600/30 to-purple-600/30 text-white shadow-lg'
+                          ? 'bg-gradient-to-br from-blue-600/20 to-purple-600/20 text-white shadow-lg'
                           : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
                       }`}
                     >
@@ -153,7 +152,7 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder='admin@school.edu'
-                    className='w-full rounded-lg border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-4 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    className='w-full border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-4 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
                   />
                 </div>
               </motion.div>
@@ -168,7 +167,7 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='••••••••'
-                    className='w-full rounded-lg border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-12 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    className='w-full border border-slate-600 bg-slate-700 py-2.5 pl-10 pr-12 text-white placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
                   />
                   <button
                     type='button'
@@ -200,30 +199,16 @@ export default function Login() {
               </motion.div>
 
               {/* Login Button */}
-              <motion.div
-                variants={itemVariants}
-                whileTap={{ scale: 0.98 }}
-                className='mt-6 rounded-xl bg-gradient-to-r from-blue-500/40 to-pink-500/40 p-[1px]'
-              >
-                <Button
-                  type='submit'
-                  disabled={isLoading}
-                  className='w-full rounded-xl bg-black/40 py-2.5 text-white backdrop-blur-xl hover:bg-black/20 disabled:cursor-not-allowed disabled:opacity-50'
-                >
-                  {isLoading ? (
-                    <span className='flex items-center justify-center gap-2'>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className='h-4 w-4 rounded-full border-2 border-white/30 border-t-white'
-                      />
-                      Logging in...
-                    </span>
-                  ) : (
-                    'Sign In'
-                  )}
-                </Button>
-              </motion.div>
+              <Button variant='gradient' size='lg' type='submit' disabled={isLoading} className='w-full rounded-2xl py-2.5 text-white'>
+                {isLoading ? (
+                  <span className='flex items-center justify-center gap-2'>
+                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }} />
+                    Logging in...
+                  </span>
+                ) : (
+                  'Sign In'
+                )}
+              </Button>
             </form>
 
             {/* Demo Info */}

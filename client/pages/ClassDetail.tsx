@@ -288,7 +288,7 @@ export default function ClassDetail() {
                   <p className='mt-1 text-sm text-gray-600 dark:text-gray-400'>
                     This is an important announcement for the class. Students should pay attention to this update.
                   </p>
-                  <p className='mt-3 text-xs text-gray-500 dark:text-gray-500'>2025-01-{10 + i}</p>
+                  <p className='mt-3 text-xs text-gray-500 dark:text-gray-500'>{new Date().toLocaleDateString()}</p>
                 </div>
               </div>
             </motion.div>

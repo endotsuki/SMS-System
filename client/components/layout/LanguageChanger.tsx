@@ -4,22 +4,28 @@ import { useApp } from '@/context/AppContext';
 import { Button } from '../ui/button';
 import { IconLanguage } from '@tabler/icons-react';
 
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'km', label: 'ភាសាខ្មែរ' },
+  { code: 'fr', label: 'Français' },
+];
+
 export function LanguageChanger() {
   const { language, setLanguage } = useApp();
-  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className='relative'>
-      {/* Trigger Button */}
-      <Button variant='outline' size='icon' onClick={() => setShowLanguageMenu((prev) => !prev)}>
+      {/* Trigger */}
+      <Button variant='outline' size='icon' onClick={() => setShowMenu((prev) => !prev)}>
         <IconLanguage size={20} />
       </Button>
 
       <AnimatePresence>
-        {showLanguageMenu && (
+        {showMenu && (
           <>
-            {/* Click Outside Overlay */}
-            <div onClick={() => setShowLanguageMenu(false)} className='fixed inset-0 z-40' />
+            {/* Click outside */}
+            <div onClick={() => setShowMenu(false)} className='fixed inset-0 z-40' />
 
             {/* Dropdown */}
             <motion.div
@@ -29,26 +35,22 @@ export function LanguageChanger() {
               transition={{ duration: 0.18, ease: 'easeOut' }}
               className='absolute right-0 z-50 mt-5 w-48 overflow-hidden rounded-xl border border-white/20 bg-popover/60 p-1 shadow-xl shadow-black/10 backdrop-blur-xl dark:border-slate-700/50'
             >
-              {[
-                { code: 'en', label: 'English' },
-                { code: 'km', label: 'ភាសាខ្មែរ' },
-                { code: 'fr', label: 'Français' },
-              ].map((lang) => {
+              {LANGUAGES.map((lang) => {
                 const isActive = language === lang.code;
+                const btnClasses = isActive
+                  ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
+                  : 'text-gray-800 hover:bg-white/30 dark:text-gray-200 dark:hover:bg-slate-700/40';
 
                 return (
                   <Button
-                    variant='ghost'
                     key={lang.code}
+                    variant='ghost'
+                    size='sm'
                     onClick={() => {
                       setLanguage(lang.code as any);
-                      setShowLanguageMenu(false);
+                      setShowMenu(false);
                     }}
-                    className={`my-1 w-full px-4 py-2 text-left text-sm duration-150 ${
-                      isActive
-                        ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
-                        : 'text-gray-800 hover:bg-white/30 dark:text-gray-200 dark:hover:bg-slate-700/40'
-                    } `}
+                    className={`my-1 w-full px-4 py-2 text-left text-sm duration-150 ${btnClasses}`}
                   >
                     {lang.label}
                   </Button>

@@ -11,15 +11,15 @@ export const khmer: Translations = {
   delete: 'លុប',
   edit: 'កែប្រែ',
   create: 'បង្កើត',
-  search: 'ស្វាងរក ថ្នាក់រៀន ភារកិច្ច...',
+  search: 'ស្វែងរក ថ្នាក់រៀន ភារកិច្ច...',
   back: 'ត្រឡប់ក្រោយ',
-  home: 'ទៃខាងលើ',
+  home: 'ទំព័រដើម',
   profile: 'ប្រវត្តិរូប',
   notifications: 'ការជូនដំណឹង',
   language: 'ភាសា',
-  theme: 'ស្ទីល',
-  darkMode: 'របៀបងងឹត',
-  lightMode: 'របៀបលឺក',
+  theme: 'រចនាប័ទ្ម',
+  darkMode: 'ងងឹត',
+  lightMode: 'ភ្លឺ',
 
   // Navigation
   myClasses: 'ថ្នាក់របស់ខ្ញុំ',
@@ -32,7 +32,7 @@ export const khmer: Translations = {
 
   // Login
   welcomeBack: 'ស្វាគមន៍ត្រលប់មកវិញ',
-  loginAs: 'ចូលក្នុងប្រព័ន្ធថា:',
+  loginAs: 'ចូលក្នុងប្រព័ន្ធជា:',
   emailAddress: 'អាសយដ្ឋានអ៊ីមែល',
   password: 'ពាក្យសម្ងាត់',
   signIn: 'ចូលប្រព័ន្ធ',
@@ -45,9 +45,9 @@ export const khmer: Translations = {
   // Landing Page
   moderWayToManage: 'វិធីសាស្រ្តទំនើបក្នុងការគ្រប់គ្រង',
   education: 'ការអប់រំ',
-  lmsDescription: 'LearnX គឺជាប្រព័ន្ធគ្រប់គ្រងការរៀនសូត្របង្គប់ក្នុងសម័យទំនើប ដែលរចនាឡើងសម្រាប់សាលា គ្រូបង្រៀន និងសិស្ស។',
+  lmsDescription: 'SMS System គឺជាប្រព័ន្ធគ្រប់គ្រងការរៀនសូត្របង្គប់ក្នុងសម័យទំនើប ដែលរចនាឡើងសម្រាប់សាលា គ្រូបង្រៀន និងសិស្ស។',
   getStarted: 'ចាប់ផ្តើម',
-  learnMore: 'ស្វាងយល់ព័ត៌មានលម្អិត',
+  learnMore: 'ស្វែងយល់ព័ត៌មានលម្អិត',
   powerfulFeatures: 'លក្ខណៈពិសេសដ៏មានអានុភាព',
   roleBasedAccess: 'ការទទួលបានលទ្ធផលតាមតួនាទី',
   roleBasedAccessDesc: 'ផ្ទាំងគ្រប់គ្រងនៃអ្នកគ្រប់គ្រង គ្រូបង្រៀន និងសិស្ស ដែលមានលក្ខណៈពិសេសផ្សេងគ្នា',
@@ -89,7 +89,7 @@ export const khmer: Translations = {
   // Assignments
   assignmentDetails: 'លម្អិតភារកិច្ច',
   dueDate: 'កាលកំណត់ដែលឈប់',
-  points: 'ដង',
+  points: 'ពិន្ទុ',
   status: 'ស្ថានភាព',
   submit: 'ដាក់ស្នើ',
   submitted: 'ដាក់ស្នើរួចហើយ',
@@ -100,11 +100,11 @@ export const khmer: Translations = {
 
   // Grades
   myGrades: 'ពិន្ទុរបស់ខ្ញុំ',
-  subject: 'វិষយ',
+  subject: 'មុខវិជ្ជា',
   grade: 'ពិន្ទុ',
-  date: 'ថ្ងៃ',
+  date: 'កាលបរិច្ឆេទ',
   averageGrade: 'ពិន្ទុមធ្យម',
-  highestGrade: 'ពិន្ទុដ៏ខ្ពស់បំផុត',
+  highestGrade: 'ពិន្ទុខ្ពស់បំផុត',
   gradeHistory: 'ប្រវត្តិពិន្ទុ',
   noGrades: 'មិនមានពិន្ទុនៅឡើយ',
 
@@ -140,17 +140,17 @@ export const khmer: Translations = {
   privacy: 'ភាពឯកជន',
   preferences: 'ចំណូលចិត្ត',
   changePassword: 'ផ្លាស់ប្តូរលេខសម្ងាត់',
-  twoFactorAuth: 'ផ្ទៀងផ្ទាត់ពីរកត្តា',
+  twoFactorAuth: 'ការផ្ទៀងផ្ទាត់ពីរជាន់',
 
   // Announcements
-  recent: 'ថ្មីក្រោយ',
-  priority: 'អគ្រាធិការ',
+  recent: 'ថ្មីៗនេះ',
+  priority: 'អាទិភាព',
   high: 'ខ្ពស់',
   medium: 'មធ្យម',
   low: 'ទាប',
   content: 'ខ្លឹមសារ',
 
   // Footer
-  allRightsReserved: 'សិទ្ធិគ្មានដែនកំណត់',
-  craftedWith: 'ផលិតដោយមនសិការលម្អិតចំពោះការអប់រំ',
+  allRightsReserved: 'រក្សាសិទ្ធិគ្រប់យ៉ាង',
+  craftedWith: 'សាងសង់ដោយ',
 };
