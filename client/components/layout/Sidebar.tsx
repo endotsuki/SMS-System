@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import type { UserRole } from '@/types';
 import { useApp } from '@/context/AppContext';
 import { Button } from '../ui/button';
@@ -28,25 +29,25 @@ interface SidebarProps {
 
 const navItems: Record<UserRole, Array<{ label: string; icon: any; path: string }>> = {
   admin: [
-    { label: 'Dashboard', icon: IconLayoutDashboard, path: '/admin' },
-    { label: 'Classes', icon: IconBook, path: '/admin/classes' },
-    { label: 'Users', icon: IconUsers, path: '/admin/users' },
-    { label: 'Reports', icon: IconChartBar, path: '/admin/reports' },
-    { label: 'Settings', icon: IconSettings2, path: '/admin/settings' },
+    { label: 'dashboard', icon: IconLayoutDashboard, path: '/admin' },
+    { label: 'classes', icon: IconBook, path: '/admin/classes' },
+    { label: 'users', icon: IconUsers, path: '/admin/users' },
+    { label: 'reports', icon: IconChartBar, path: '/admin/reports' },
+    { label: 'settings', icon: IconSettings2, path: '/admin/settings' },
   ],
   teacher: [
-    { label: 'Dashboard', icon: IconLayoutDashboard, path: '/teacher' },
-    { label: 'My Classes', icon: IconBook, path: '/teacher/classes' },
-    { label: 'Assignments', icon: IconFileText, path: '/teacher/assignments' },
-    { label: 'Grades', icon: IconChartBarPopular, path: '/teacher/grades' },
-    { label: 'Settings', icon: IconSettings2, path: '/teacher/settings' },
+    { label: 'dashboard', icon: IconLayoutDashboard, path: '/teacher' },
+    { label: 'myClasses', icon: IconBook, path: '/teacher/classes' },
+    { label: 'assignments', icon: IconFileText, path: '/teacher/assignments' },
+    { label: 'grades', icon: IconChartBarPopular, path: '/teacher/grades' },
+    { label: 'settings', icon: IconSettings2, path: '/teacher/settings' },
   ],
   student: [
-    { label: 'Dashboard', icon: IconLayoutDashboard, path: '/student' },
-    { label: 'Classes', icon: IconBook, path: '/student/classes' },
-    { label: 'Assignments', icon: IconFileText, path: '/student/assignments' },
-    { label: 'Grades', icon: IconChartBarPopular, path: '/student/grades' },
-    { label: 'Settings', icon: IconSettings2, path: '/student/settings' },
+    { label: 'dashboard', icon: IconLayoutDashboard, path: '/student' },
+    { label: 'classes', icon: IconBook, path: '/student/classes' },
+    { label: 'assignments', icon: IconFileText, path: '/student/assignments' },
+    { label: 'grades', icon: IconChartBarPopular, path: '/student/grades' },
+    { label: 'settings', icon: IconSettings2, path: '/student/settings' },
   ],
 };
 
@@ -54,163 +55,102 @@ export function Sidebar({ userRole, userName, userAvatar, onLogout, isOpen = tru
   const location = useLocation();
   const { translations } = useApp();
   const items = navItems[userRole];
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const getNavLabel = (key: string): string => {
-    const labelMap: Record<string, keyof typeof translations> = {
-      Dashboard: 'dashboard',
-      'My Classes': 'myClasses',
-      Classes: 'classes',
-      Assignments: 'assignments',
-      Grades: 'grades',
-      Users: 'users',
-      Reports: 'reports',
-      Settings: 'settings',
-    };
-    const translationKey = labelMap[key];
-    return translationKey ? translations[translationKey] : key;
-  };
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <motion.div
-      initial={false}
-      animate={{
-        width: isOpen ? 280 : 80,
-      }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className='fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-slate-200/50 bg-white/70 shadow-lg backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/70'
-    >
-      {/* Logo/Header */}
-      <div className='border-b border-slate-200/50 px-6 py-4 dark:border-slate-700/50'>
-        <div className='flex items-center justify-between'>
-          <motion.div
-            animate={{
-              opacity: isOpen ? 1 : 0,
-              width: isOpen ? 'auto' : 0,
-              display: isOpen ? 'block' : 'none',
-            }}
-            transition={{ duration: 0.2 }}
-            className='overflow-hidden'
-          >
-            <div className='flex items-center gap-2'>
-              <img src='/logo.png' alt='LearnX Logo' className='h-8 w-auto' />
-              <span className='text-lg font-medium'>SMS System</span>
-            </div>
-          </motion.div>
-          <Button
-            variant='ghost'
-            size='icon'
-            onClick={() => onToggle?.(!isOpen)}
-            className='flex-shrink-0 rounded-lg p-1.5 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800'
-          >
-            {isOpen ? (
-              <IconChevronLeft size={20} className='text-slate-600 dark:text-slate-400' />
-            ) : (
-              <IconChevronRight size={20} className='text-slate-600 dark:text-slate-400' />
-            )}
-          </Button>
-        </div>
-      </div>
+    <>
+      {/* Mobile Overlay */}
+      {isMobile && isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className='fixed inset-0 z-30 bg-black/50'
+          onClick={() => onToggle?.(false)}
+        />
+      )}
 
-      {/* Navigation Items */}
-      <nav className='flex-1 overflow-y-auto px-4 py-4'>
-        <div className='flex flex-col gap-2'>
-          {items.map((item) => {
-            const isActive = location.pathname === item.path;
-            const Icon = item.icon;
+      <motion.aside
+        initial={false}
+        animate={isMobile ? { x: isOpen ? 0 : -300 } : { width: isOpen ? 280 : 80 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className='fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-slate-200/50 bg-white/70 shadow-lg backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/70'
+        style={{ width: isMobile ? 280 : undefined }}
+      >
+        {/* Header */}
+        <div className='border-b border-slate-200/50 px-4 py-4 dark:border-slate-700/50'>
+          <div className='flex items-center justify-between'>
+            {isOpen && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='flex items-center gap-2'>
+                <img src='/logo.png' className='h-8' alt='Logo' />
+                <span className='text-lg font-medium'>SMS System</span>
+              </motion.div>
+            )}
+
+            {!isMobile && (
+              <Button size='icon' variant='ghost' onClick={() => onToggle?.(!isOpen)}>
+                {isOpen ? <IconChevronLeft /> : <IconChevronRight />}
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <nav className='flex-1 gap-9 overflow-y-auto px-3 py-4'>
+          {items.map(({ path, icon: Icon, label }) => {
+            const active = location.pathname === path;
 
             return (
-              <motion.div key={item.path} whileHover={{ x: isOpen ? 2 : 0 }} transition={{ duration: 0.3 }}>
-                <Button
-                  asChild
-                  size='icon'
-                  variant='ghost'
-                  className={`w-full justify-start rounded-xl px-3 py-6 transition-colors ${
-                    isActive
-                      ? 'bg-blue-500/30 text-white shadow-sm backdrop-blur-lg hover:bg-blue-500/40'
-                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
-                  } ${!isOpen ? 'justify-center' : ''}`}
-                  title={!isOpen ? getNavLabel(item.label) : undefined}
-                >
-                  <Link to={item.path} className='flex w-full items-center gap-3'>
-                    <Icon size={20} className='flex-shrink-0' />
-                    {isOpen && (
-                      <motion.span
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{
-                          opacity: 1,
-                          width: 'auto',
-                        }}
-                        exit={{ opacity: 0, width: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className='whitespace-nowrap text-sm font-medium'
-                      >
-                        {getNavLabel(item.label)}
-                      </motion.span>
-                    )}
-                  </Link>
-                </Button>
-              </motion.div>
+              <Link
+                key={path}
+                to={path}
+                onClick={() => isMobile && onToggle?.(false)}
+                className={`mb-1 flex items-center gap-3 rounded-xl px-3 py-3 transition-all ${
+                  active
+                    ? 'grid-flow-row bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+                    : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+                } ${!isOpen && !isMobile && 'justify-center'}`}
+              >
+                <Icon size={20} />
+                {(isOpen || isMobile) && <span className='text-sm font-medium'>{translations[label as keyof typeof translations]}</span>}
+              </Link>
             );
           })}
-        </div>
-      </nav>
+        </nav>
 
-      {/* User Info & Logout */}
-      <div className='mb-5 space-y-4 border-t border-slate-200/50 p-3 dark:border-slate-700/50'>
-        {/* User Profile */}
-        <div className={`flex items-center gap-3 px-2 ${!isOpen ? 'justify-center' : ''}`}>
-          <div className='flex-shrink-0'>
+        {/* Footer */}
+        <div className='border-t border-slate-200/50 p-3 dark:border-slate-700/50'>
+          <div className={`flex items-center gap-3 ${!isOpen && !isMobile && 'justify-center'}`}>
             {userAvatar ? (
               <Avatar>
                 <AvatarImage src={userAvatar} alt={userName} />
               </Avatar>
             ) : (
-              <div className='flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 font-semibold text-white'>
-                {userName.charAt(0).toUpperCase()}
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500 font-semibold text-white'>
+                {userName[0]}
+              </div>
+            )}
+
+            {(isOpen || isMobile) && (
+              <div className='min-w-0 flex-1'>
+                <p className='truncate text-sm font-semibold'>{userName}</p>
+                <p className='text-xs capitalize text-slate-500'>{userRole}</p>
               </div>
             )}
           </div>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              animate={{
-                opacity: 1,
-                width: 'auto',
-              }}
-              exit={{ opacity: 0, width: 0 }}
-              transition={{ duration: 0.2 }}
-              className='min-w-0 flex-1'
-            >
-              <p className='truncate text-sm font-semibold text-slate-900 dark:text-white'>{userName}</p>
-              <p className='truncate text-xs capitalize text-slate-600 dark:text-slate-400'>{userRole}</p>
-            </motion.div>
-          )}
-        </div>
 
-        {/* Logout Button */}
-        <Button
-          onClick={onLogout}
-          variant='destructive'
-          className={`rounded-xl ${!isOpen ? 'justify-center' : ''}`}
-          title={!isOpen ? translations.logout : undefined}
-        >
-          <IconLogout size={18} className='flex-shrink-0' />
-          {isOpen && (
-            <motion.span
-              initial={{ opacity: 0, width: 0 }}
-              animate={{
-                opacity: 1,
-                width: 'auto',
-              }}
-              exit={{ opacity: 0, width: 0 }}
-              transition={{ duration: 0.2 }}
-              className='whitespace-nowrap text-sm font-medium'
-            >
-              {translations.logout}
-            </motion.span>
-          )}
-        </Button>
-      </div>
-    </motion.div>
+          <Button variant='destructive' onClick={onLogout} className={`mt-4 w-full ${!isOpen && !isMobile && 'px-2'}`}>
+            <IconLogout size={18} />
+            {(isOpen || isMobile) && <span className='ml-2'>{translations.logout}</span>}
+          </Button>
+        </div>
+      </motion.aside>
+    </>
   );
 }

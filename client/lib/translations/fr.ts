@@ -44,13 +44,13 @@ export const french: Translations = {
 
   // Landing Page
   moderWayToManage: 'Le moyen moderne de gérer',
-  education: 'L\'éducation',
-  lmsDescription: 'LearnX est un système de gestion d\'apprentissage moderne conçu pour les écoles, les enseignants et les étudiants.',
+  education: "L'éducation",
+  lmsDescription: "LearnX est un système de gestion d'apprentissage moderne conçu pour les écoles, les enseignants et les étudiants.",
   getStarted: 'Commencer',
   learnMore: 'En savoir plus',
   powerfulFeatures: 'Fonctionnalités puissantes',
   roleBasedAccess: 'Accès basé sur les rôles',
-  roleBasedAccessDesc: 'Tableaux de bord d\'administrateur, d\'enseignant et d\'étudiant avec des fonctionnalités adaptées',
+  roleBasedAccessDesc: "Tableaux de bord d'administrateur, d'enseignant et d'étudiant avec des fonctionnalités adaptées",
   classManagement: 'Gestion des classes',
   classManagementDesc: 'Créer, gérer et organiser les classes facilement',
   performanceAnalytics: 'Analyse des performances',
@@ -59,20 +59,20 @@ export const french: Translations = {
   realTimeUpdatesDesc: 'Notifications instantanées et annonces de classe en direct',
   builtForEveryone: 'Construit pour tout le monde',
   administrators: 'Administrateurs',
-  administratorsDesc: 'Gérer les utilisateurs, les classes et voir les analyses à l\'échelle de l\'école',
+  administratorsDesc: "Gérer les utilisateurs, les classes et voir les analyses à l'échelle de l'école",
   teachers: 'Enseignants',
   teachersDesc: 'Créer des classes, gérer les devoirs et suivre les progrès des étudiants',
   students: 'Étudiants',
   studentsDesc: 'Accéder aux classes, soumettre des devoirs et surveiller les notes',
-  readyToTransform: 'Prêt à transformer l\'éducation?',
-  readyToTransformDesc: 'Commencez à gérer votre école plus efficacement dès aujourd\'hui',
+  readyToTransform: "Prêt à transformer l'éducation?",
+  readyToTransformDesc: "Commencez à gérer votre école plus efficacement dès aujourd'hui",
   signInNow: 'Se connecter maintenant',
 
   // Dashboard
   hello: 'Bonjour',
   hereIsOverview: 'Voici un aperçu de votre école.',
-  totalStudents: 'Nombre total d\'étudiants',
-  totalTeachers: 'Nombre total d\'enseignants',
+  totalStudents: "Nombre total d'étudiants",
+  totalTeachers: "Nombre total d'enseignants",
   activeClasses: 'Classes actives',
   enrolledClasses: 'Classes inscrites',
   pendingAssignments: 'Devoirs en attente',
@@ -81,14 +81,14 @@ export const french: Translations = {
   newThisTerm: 'nouveau ce trimestre',
   pendingReviews: 'examens en attente',
   basedOnLatestGrades: 'Sur la base des notes les plus récentes',
-  noClassesEnrolled: 'Aucune classe inscrite pour l\'instant',
-  noClassesAssigned: 'Aucune classe attribuée pour l\'instant',
+  noClassesEnrolled: "Aucune classe inscrite pour l'instant",
+  noClassesAssigned: "Aucune classe attribuée pour l'instant",
   requestCreateClass: 'Demander de créer une classe',
   noUpcomingAssignments: 'Pas de devoirs à venir',
 
   // Assignments
   assignmentDetails: 'Détails des devoirs',
-  dueDate: 'Date d\'échéance',
+  dueDate: "Date d'échéance",
   points: 'Points',
   status: 'Statut',
   submit: 'Soumettre',
@@ -116,16 +116,16 @@ export const french: Translations = {
   schedule: 'Calendrier',
   room: 'Salle',
   instructor: 'Instructeur',
-  studentCount: 'Nombre d\'étudiants',
+  studentCount: "Nombre d'étudiants",
 
   // Admin
-  manageSchool: 'Gérer l\'école',
-  schoolOverview: 'Voici un aperçu de votre école.',
+  manageSchool: "Gérer l'école",
+  overView: 'Voici un aperçu',
   createNewClass: 'Créer une nouvelle classe',
   manageUsers: 'Gérer les utilisateurs',
   generateReports: 'Générer des rapports',
   systemSettings: 'Paramètres système',
-  
+
   // Class Detail
   classDetails: 'Détails de la classe',
   classInfo: 'Informations de classe',
@@ -134,14 +134,14 @@ export const french: Translations = {
   classAnnouncements: 'Annonces',
   addAssignment: 'Ajouter un devoir',
   addAnnouncement: 'Ajouter une annonce',
-  
+
   // Settings
   accountSettings: 'Paramètres du compte',
   privacy: 'Intimité',
   preferences: 'Préférences',
   changePassword: 'Changer le mot de passe',
   twoFactorAuth: 'Authentification à deux facteurs',
-  
+
   // Announcements
   recent: 'Récent',
   priority: 'Priorité',
@@ -149,8 +149,8 @@ export const french: Translations = {
   medium: 'Moyen',
   low: 'Faible',
   content: 'Contenu',
-  
+
   // Footer
   allRightsReserved: 'Tous droits réservés',
-  craftedWith: 'Créé avec soin pour l\'éducation',
+  craftedWith: "Créé avec soin pour l'éducation",
 };

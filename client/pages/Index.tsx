@@ -28,7 +28,7 @@ export default function LMSLandingGlass() {
   return (
     <div className='relative min-h-screen overflow-hidden bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900'>
       {/* Navbar */}
-      <nav className='relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
+      <nav className='relative z-[9999] mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
         <div className='flex items-center gap-2'>
           <img src='/logo.png' alt='Logo' className='h-8 w-auto' />
           <span className='text-lg font-medium'>SMS System</span>
@@ -86,7 +86,7 @@ export default function LMSLandingGlass() {
               className='flex flex-col gap-4 rounded-3xl border border-white/20 bg-white/10 p-8 shadow-md backdrop-blur-lg transition hover:shadow-lg dark:border-gray-700 dark:bg-white/5'
             >
               <div className='w-max rounded-2xl bg-white/20 p-3 backdrop-blur-sm dark:bg-gray-700/20'>
-                <Icon size={28} className='text-gray-200 dark:text-gray-300' />
+                <Icon size={28} stroke={1.5} className='text-gray-200 dark:text-gray-300' />
               </div>
               <h3 className='text-xl font-semibold'>{translations[feature.title as keyof typeof translations]}</h3>
               <p className='text-gray-300 dark:text-gray-400'>{translations[feature.desc as keyof typeof translations]}</p>
@@ -110,7 +110,7 @@ export default function LMSLandingGlass() {
               className='flex flex-col items-center gap-4 rounded-3xl border border-white/20 bg-white/10 p-8 shadow-md backdrop-blur-lg transition hover:shadow-lg dark:border-gray-700 dark:bg-white/5'
             >
               <div className='w-max rounded-2xl bg-white/30 p-3 backdrop-blur-sm dark:bg-gray-700/30'>
-                <item.icon size={40} stroke={1} className='text-gray-200 dark:text-gray-300' />
+                <item.icon size={40} stroke={1.5} className='text-gray-200 dark:text-gray-300' />
               </div>
               <h3 className='text-xl font-semibold'>{item.role}</h3>
               <p className='text-gray-300 dark:text-gray-400'>{translations[item.desc as keyof typeof translations]}</p>

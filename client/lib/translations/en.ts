@@ -43,7 +43,8 @@ export const english = {
   // Landing Page
   moderWayToManage: 'The Modern Way to Manage',
   education: 'Education',
-  lmsDescription: 'LearnX is a modern learning management system designed for schools, teachers, and students. Streamline operations, enhance learning, and succeed together.',
+  lmsDescription:
+    'LearnX is a modern learning management system designed for schools, teachers, and students. Streamline operations, enhance learning, and succeed together.',
   getStarted: 'Get Started',
   learnMore: 'Learn More',
   powerfulFeatures: 'Powerful Features',
@@ -118,12 +119,12 @@ export const english = {
 
   // Admin
   manageSchool: 'Manage School',
-  schoolOverview: "Here's an overview of your school.",
+  overView: "Here's an overview",
   createNewClass: 'Create New Class',
   manageUsers: 'Manage Users',
   generateReports: 'Generate Reports',
   systemSettings: 'System Settings',
-  
+
   // Class Detail
   classDetails: 'Class Details',
   classInfo: 'Class Info',
@@ -132,14 +133,14 @@ export const english = {
   classAnnouncements: 'Announcements',
   addAssignment: 'Add Assignment',
   addAnnouncement: 'Add Announcement',
-  
+
   // Settings
   accountSettings: 'Account Settings',
   privacy: 'Privacy',
   preferences: 'Preferences',
   changePassword: 'Change Password',
   twoFactorAuth: 'Two-Factor Authentication',
-  
+
   // Announcements
   recent: 'Recent',
   priority: 'Priority',
@@ -147,7 +148,7 @@ export const english = {
   medium: 'Medium',
   low: 'Low',
   content: 'Content',
-  
+
   // Footer
   allRightsReserved: 'All rights reserved',
   craftedWith: 'Crafted with care for education',

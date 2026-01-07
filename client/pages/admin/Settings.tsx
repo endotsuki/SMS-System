@@ -10,13 +10,12 @@ export default function AdminSettings() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { translations, theme, toggleTheme, language, setLanguage } = useApp();
+  const { translations } = useApp();
 
   useEffect(() => {
     const user = localStorage.getItem('currentUser');
     if (user) {
-      const parsedUser = JSON.parse(user);
-      setCurrentUser(parsedUser);
+      setCurrentUser(JSON.parse(user));
     } else {
       navigate('/');
     }
@@ -31,68 +30,55 @@ export default function AdminSettings() {
 
   return (
     <AppLayout user={currentUser} onLogout={handleLogout}>
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className='text-4xl font-semibold text-gray-900 dark:text-white'>{translations.systemSettings}</h1>
-        <p className='mt-2 text-gray-600 dark:text-gray-400'>{translations.manageSchool}</p>
-      </motion.div>
+      {/* Header */}
+      <div className='mb-6'>
+        <h1 className='text-3xl font-bold text-gray-900 dark:text-white md:text-4xl'>{translations.settings}</h1>
+        <p className='mt-1 text-sm text-gray-600 dark:text-gray-400 md:text-base'>Manage your account and system preferences</p>
+      </div>
 
-      <div className='mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3'>
+      <div className='grid gap-6 lg:grid-cols-3'>
         {/* Main Settings */}
-        <div className='space-y-8 lg:col-span-2'>
-          {/* Account Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
-          >
-            <h2 className='mb-6 text-2xl font-semibold text-gray-900 dark:text-white'>{translations.accountSettings}</h2>
-
-            <div className='space-y-6'>
+        <div className='space-y-6 lg:col-span-2'>
+          {/* Account */}
+          <div className='rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:p-6'>
+            <h2 className='mb-4 text-xl font-semibold text-gray-900 dark:text-white'>Account Settings</h2>
+            <div className='space-y-4'>
               <div>
-                <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>{translations.profile}</label>
+                <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>Full Name</label>
                 <input
                   type='text'
                   value={currentUser.name}
                   readOnly
-                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                 />
               </div>
-
               <div>
-                <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>{translations.emailAddress}</label>
+                <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>Email Address</label>
                 <input
                   type='email'
                   value={currentUser.email}
                   readOnly
-                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                 />
               </div>
-
               <div>
                 <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>Department</label>
                 <input
                   type='text'
                   value={currentUser.department}
                   readOnly
-                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Security Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
-          >
-            <div className='mb-6 flex items-center gap-2'>
-              <IconLock size={24} className='text-blue-600 dark:text-blue-400' />
-              <h2 className='text-2xl font-semibold text-gray-900 dark:text-white'>{translations.changePassword}</h2>
+          {/* Security */}
+          <div className='rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:p-6'>
+            <div className='mb-4 flex items-center gap-2'>
+              <IconLock size={20} className='text-blue-600 dark:text-blue-400' />
+              <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>Change Password</h2>
             </div>
-
             <div className='space-y-4'>
               <div>
                 <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>Current Password</label>
@@ -100,7 +86,7 @@ export default function AdminSettings() {
                   <input
                     type={showPassword ? 'text' : 'password'}
                     placeholder='••••••••'
-                    className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                    className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                   />
                   <button
                     onClick={() => setShowPassword(!showPassword)}
@@ -110,92 +96,67 @@ export default function AdminSettings() {
                   </button>
                 </div>
               </div>
-
               <div>
                 <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>New Password</label>
                 <input
                   type='password'
                   placeholder='••••••••'
-                  className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                 />
               </div>
-
               <div>
                 <label className='mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300'>Confirm Password</label>
                 <input
                   type='password'
                   placeholder='••••••••'
-                  className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-gray-900 dark:border-slate-700 dark:bg-slate-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm dark:border-slate-700 dark:bg-slate-700 dark:text-white'
                 />
               </div>
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className='mt-2 w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600'
-              >
-                {translations.changePassword}
-              </motion.button>
+              <button className='w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600'>
+                Update Password
+              </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* System Security */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
-          >
-            <div className='mb-6 flex items-center gap-2'>
-              <IconShield size={24} className='text-green-600 dark:text-green-400' />
-              <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>System Security</h2>
+          <div className='rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:p-6'>
+            <div className='mb-4 flex items-center gap-2'>
+              <IconShield size={20} className='text-green-600 dark:text-green-400' />
+              <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>System Security</h2>
             </div>
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
-                <span className='text-sm text-gray-700 dark:text-gray-300'>Two-Factor Authentication</span>
+                <span className='text-sm text-gray-700 dark:text-gray-300'>Two-Factor Auth</span>
                 <div className='relative h-6 w-12 cursor-pointer rounded-full bg-green-400'>
-                  <div className='absolute right-0.5 top-0.5 h-5 w-5 rounded-full bg-white'></div>
+                  <div className='absolute right-0.5 top-0.5 h-5 w-5 rounded-full bg-white' />
                 </div>
               </div>
               <div className='flex items-center justify-between'>
-                <span className='text-sm text-gray-700 dark:text-gray-300'>API Key Management</span>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className='rounded-lg border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:border-slate-700 dark:text-gray-300 dark:hover:bg-slate-700'
-                >
+                <span className='text-sm text-gray-700 dark:text-gray-300'>API Keys</span>
+                <button className='rounded-lg border border-gray-200 px-3 py-1 text-xs font-medium hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-700'>
                   Manage
-                </motion.button>
+                </button>
               </div>
               <div className='flex items-center justify-between'>
-                <span className='text-sm text-gray-700 dark:text-gray-300'>System Backup</span>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className='rounded-lg border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:border-slate-700 dark:text-gray-300 dark:hover:bg-slate-700'
-                >
+                <span className='text-sm text-gray-700 dark:text-gray-300'>Backup</span>
+                <button className='rounded-lg border border-gray-200 px-3 py-1 text-xs font-medium hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-700'>
                   Backup Now
-                </motion.button>
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Database Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
-          >
-            <div className='mb-6 flex items-center gap-2'>
-              <IconDatabase size={24} className='text-purple-600 dark:text-purple-400' />
-              <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>Database</h2>
+          {/* Database */}
+          <div className='rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:p-6'>
+            <div className='mb-4 flex items-center gap-2'>
+              <IconDatabase size={20} className='text-purple-600 dark:text-purple-400' />
+              <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>Database</h2>
             </div>
-            <div className='space-y-4'>
+            <div className='space-y-3'>
               <div>
-                <p className='mb-2 text-sm text-gray-700 dark:text-gray-300'>Database Status</p>
+                <p className='mb-2 text-sm text-gray-700 dark:text-gray-300'>Status</p>
                 <div className='flex items-center gap-2'>
-                  <div className='h-3 w-3 rounded-full bg-green-500'></div>
+                  <div className='h-3 w-3 rounded-full bg-green-500' />
                   <span className='text-sm font-medium text-gray-900 dark:text-white'>Connected</span>
                 </div>
               </div>
@@ -204,41 +165,26 @@ export default function AdminSettings() {
                 <p className='text-sm text-gray-600 dark:text-gray-400'>2025-01-10 03:30 AM</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Sidebar Settings */}
+        {/* Sidebar */}
         <div className='space-y-6'>
-          {/* Notifications Settings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className='rounded-lg border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800'
-          >
+          {/* Notifications */}
+          <div className='rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:p-6'>
             <div className='mb-4 flex items-center gap-2'>
-              <IconBell size={20} className='text-blue-600 dark:text-blue-400' />
-              <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>{translations.notifications}</h3>
+              <IconBell size={18} className='text-blue-600 dark:text-blue-400' />
+              <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>Notifications</h3>
             </div>
             <div className='space-y-3'>
-              <label className='flex cursor-pointer items-center gap-3'>
-                <input type='checkbox' defaultChecked className='h-4 w-4 rounded' />
-                <span className='text-sm text-gray-700 dark:text-gray-300'>System Alerts</span>
-              </label>
-              <label className='flex cursor-pointer items-center gap-3'>
-                <input type='checkbox' defaultChecked className='h-4 w-4 rounded' />
-                <span className='text-sm text-gray-700 dark:text-gray-300'>User Activity</span>
-              </label>
-              <label className='flex cursor-pointer items-center gap-3'>
-                <input type='checkbox' defaultChecked className='h-4 w-4 rounded' />
-                <span className='text-sm text-gray-700 dark:text-gray-300'>System Updates</span>
-              </label>
-              <label className='flex cursor-pointer items-center gap-3'>
-                <input type='checkbox' defaultChecked className='h-4 w-4 rounded' />
-                <span className='text-sm text-gray-700 dark:text-gray-300'>Security Alerts</span>
-              </label>
+              {['System Alerts', 'User Activity', 'System Updates', 'Security Alerts'].map((item) => (
+                <label key={item} className='flex cursor-pointer items-center gap-3'>
+                  <input type='checkbox' defaultChecked className='h-4 w-4 rounded' />
+                  <span className='text-sm text-gray-700 dark:text-gray-300'>{item}</span>
+                </label>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </AppLayout>

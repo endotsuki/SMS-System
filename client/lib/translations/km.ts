@@ -120,7 +120,7 @@ export const khmer: Translations = {
 
   // Admin
   manageSchool: 'គ្រប់គ្រងសាលា',
-  schoolOverview: 'នេះគឺជាទិដ្ឋភាពទូលំទូលាយនៃសាលារបស់អ្នក។',
+  overView: 'នេះគឺជាទិដ្ឋភាពទូលំទូលាយ។',
   createNewClass: 'បង្កើតថ្នាក់រៀនថ្មី',
   manageUsers: 'គ្រប់គ្រងអ្នកប្រើប្រាស់',
   generateReports: 'បង្កើតរបាយការណ៍',

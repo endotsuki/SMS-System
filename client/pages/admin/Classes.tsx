@@ -19,8 +19,7 @@ export default function AdminClasses() {
   useEffect(() => {
     const user = localStorage.getItem('currentUser');
     if (user) {
-      const parsedUser = JSON.parse(user);
-      setCurrentUser(parsedUser);
+      setCurrentUser(JSON.parse(user));
     } else {
       navigate('/');
     }
@@ -39,57 +38,45 @@ export default function AdminClasses() {
 
   return (
     <AppLayout user={currentUser} onLogout={handleLogout}>
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className='text-4xl font-semibold text-gray-900 dark:text-white'>{translations.classes}</h1>
-        <p className='mt-2 text-gray-600 dark:text-gray-400'>
-          {mockClasses.length} {translations.activeClasses}
-        </p>
-      </motion.div>
+      {/* Header */}
+      <div className='mb-6'>
+        <h1 className='text-3xl font-bold text-gray-900 dark:text-white md:text-4xl'>{translations.classes}</h1>
+        <p className='mt-1 text-sm text-gray-600 dark:text-gray-400 md:text-base'>{mockClasses.length} active classes</p>
+      </div>
 
-      {/* Search and Action Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className='mb-8 mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center'
-      >
-        <div className='relative w-full sm:w-96'>
+      {/* Search Bar */}
+      <div className='mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+        <div className='relative flex-1 sm:max-w-md'>
           <IconSearch size={18} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400' />
           <Input
             type='text'
-            placeholder={translations.search}
+            placeholder='Search classes...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='w-full rounded-full border border-gray-200 bg-white py-2 pl-10 pr-4 text-gray-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white'
+            className='w-full rounded-lg border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm dark:border-slate-700 dark:bg-slate-800'
           />
         </div>
-        <Button variant='secondary'>
+        <Button variant='default' className='gap-2'>
           <IconPlus size={18} />
-          {translations.createNewClass}
+          <span className='hidden sm:inline'>Create New Class</span>
+          <span className='sm:hidden'>New Class</span>
         </Button>
-      </motion.div>
+      </div>
 
-      {/* Classes Grid */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-        {filteredClasses.length > 0 ? (
-          <div className='space-y-4'>
-            {filteredClasses.map((classItem, index) => (
-              <motion.div
-                key={classItem.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.05 }}
-              >
-                <ClassCard classData={classItem} variant='list' />
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className='rounded-lg border border-gray-200 bg-white py-12 text-center dark:border-slate-700 dark:bg-slate-800'>
-            <p className='text-gray-600 dark:text-gray-400'>No classes found matching your search.</p>
-          </div>
-        )}
-      </motion.div>
+      {/* Classes List */}
+      {filteredClasses.length > 0 ? (
+        <div className='space-y-3'>
+          {filteredClasses.map((cls, i) => (
+            <motion.div key={cls.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+              <ClassCard classData={cls} variant='list' />
+            </motion.div>
+          ))}
+        </div>
+      ) : (
+        <div className='rounded-lg border border-gray-200 bg-white p-12 text-center dark:border-slate-700 dark:bg-slate-800'>
+          <p className='text-gray-600 dark:text-gray-400'>No classes found matching your search.</p>
+        </div>
+      )}
     </AppLayout>
   );
 }
